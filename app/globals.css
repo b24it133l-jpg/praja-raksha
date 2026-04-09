@@ -1,18 +1,45 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-primary: #0f5d46;
+  --color-primary-strong: #0b4d39;
+  --color-background-main: #f4faf6;
+  --color-background-soft: #eaf4ed;
+  
+  --shadow-premium: 0 18px 45px rgba(10, 31, 23, 0.08);
+}
 
 :root {
-  --background: #f4faf6;
-  --background-soft: #eaf4ed;
   --foreground: #0a1f17;
   --muted: #3e4f45;
-  --primary: #0f5d46;
-  --primary-strong: #0b4d39;
-  --accent: #e8f3ea;
-  --card: rgba(255, 255, 255, 0.82);
-  --border: rgba(255, 255, 255, 0.7);
-  --shadow: 0 18px 45px rgba(10, 31, 23, 0.08);
+  --card: rgba(255, 255, 255, 0.72);
+  --border: rgba(255, 255, 255, 0.4);
+}
+
+::selection {
+  background: rgba(15, 93, 70, 0.15);
+  color: #0b4d39;
+}
+
+/* Custom Styled Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+  border: 3px solid var(--color-background-main);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 * {
@@ -28,16 +55,13 @@ body {
   margin: 0;
   color: var(--foreground);
   background:
-    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.16), transparent 30%),
-    radial-gradient(circle at 85% 0%, rgba(34, 197, 94, 0.12), transparent 28%),
-    linear-gradient(135deg, var(--background) 0%, var(--background-soft) 100%);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "SF Pro Text",
-    "Segoe UI",
-    sans-serif;
+    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.12), transparent 30%),
+    radial-gradient(circle at 85% 0%, rgba(34, 197, 94, 0.08), transparent 28%),
+    linear-gradient(135deg, var(--color-background-main) 0%, var(--color-background-soft) 100%);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 a {
@@ -54,6 +78,8 @@ textarea {
 
 .app-shell {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-shell {
@@ -61,6 +87,7 @@ textarea {
   max-width: 1240px;
   margin: 0 auto;
   padding: 116px 22px 48px;
+  flex-grow: 1;
 }
 
 @media (min-width: 768px) {
@@ -72,9 +99,14 @@ textarea {
 .glass-card {
   background: var(--card);
   border: 1px solid var(--border);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: var(--shadow);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-premium);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 25px 50px rgba(10, 31, 23, 0.12);
 }
 
 .glow-green {
@@ -93,9 +125,10 @@ textarea {
 .section-label {
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-size: 0.73rem;
-  font-weight: 700;
+  font-size: 0.7rem;
+  font-weight: 750;
   color: #5b6f64;
+  opacity: 0.8;
 }
 
 .hero-grid {
@@ -115,6 +148,22 @@ textarea {
   gap: 20px;
 }
 
+.cols-4 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 768px) {
   .grid-cards.cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -131,107 +180,143 @@ textarea {
   gap: 8px;
   padding: 8px 14px;
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
 }
 
 .soft-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(16, 35, 26, 0.12), transparent);
+  background: linear-gradient(to right, transparent, rgba(16, 35, 26, 0.1), transparent);
 }
 
 .gradient-button {
-  background: linear-gradient(135deg, var(--primary), #167657);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
   color: white;
   border: none;
-  box-shadow: 0 10px 24px rgba(15, 93, 70, 0.22);
+  box-shadow: 0 10px 24px rgba(15, 93, 70, 0.18);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .gradient-button:hover {
-  background: linear-gradient(135deg, var(--primary-strong), #115d46);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(15, 93, 70, 0.25);
+  background: linear-gradient(135deg, var(--color-primary-strong), #0a3d2e);
+}
+
+.gradient-button:active {
+  transform: translateY(0);
 }
 
 .secondary-button {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(16, 35, 26, 0.08);
   color: var(--foreground);
+  transition: all 0.25s ease;
 }
 
 .secondary-button:hover {
   background: #ffffff;
+  border-color: rgba(16, 35, 26, 0.15);
 }
 
 .module-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #eff8f2;
-  color: var(--primary);
+  color: var(--color-primary);
   font-size: 1.15rem;
   font-weight: 800;
-  box-shadow: inset 0 0 0 1px rgba(15, 93, 70, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(15, 93, 70, 0.05);
 }
 
 .timeline-dot {
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  background: var(--primary);
+  background: var(--color-primary);
   margin-top: 6px;
   flex-shrink: 0;
 }
+
 .container-ios {
   width: min(1200px, calc(100% - 32px));
   margin-inline: auto;
 }
 
 .title-xl {
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 650;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .title-lg {
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
 }
 
 .text-body {
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.65;
+  font-size: 1.05rem;
 }
 
 .card-ios {
-  border-radius: 28px;
-  padding: 1.6rem;
+  border-radius: 24px;
+  padding: 1.5rem;
   background: var(--card);
   border: 1px solid var(--border);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--shadow);
+  backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-premium);
+  transition: all 0.3s ease;
+}
+
+.card-ios:hover {
+  transform: translateY(-4px);
+  border-color: rgba(15, 93, 70, 0.1);
 }
 
 .input-ios {
   width: 100%;
-  border-radius: 18px;
-  padding: 0.9rem;
-  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 0.85rem 1.2rem;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: white;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-ios:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(15, 93, 70, 0.08);
 }
 
 .btn-primary {
-  border-radius: 18px;
-  padding: 0.8rem 1.2rem;
-  background: linear-gradient(135deg, var(--primary), #167657);
+  border-radius: 16px;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
   color: white;
   font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+  transform: scale(1.02);
 }
 
 .btn-secondary {
-  border-radius: 18px;
-  padding: 0.8rem 1.2rem;
+  border-radius: 16px;
+  padding: 0.8rem 1.5rem;
   background: white;
   border: 1px solid rgba(0,0,0,0.08);
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .grid-safe {

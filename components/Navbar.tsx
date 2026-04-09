@@ -3,9 +3,9 @@ import Link from "next/link";
 const navItems = [
   { label: "Complaints", href: "/complaints" },
   { label: "Women Safety", href: "/women-safety" },
+  { label: "Locality Issues", href: "/locality-issues" },
   { label: "Schemes", href: "/schemes" },
-  { label: "AI Assistant", href: "/ai-assistant" },
-  { label: "Track", href: "/dashboard" },
+  { label: "Track History", href: "/dashboard" },
 ];
 
 export default function Navbar() {
@@ -27,12 +27,12 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-5 xl:flex">
+        <nav className="hidden items-center gap-8 xl:flex">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm font-medium text-[#294136] transition hover:text-[#0F5D46]"
+              className="relative py-1 text-sm font-semibold text-[#294136]/80 transition-all hover:text-[#0F5D46] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#0F5D46] after:transition-all hover:after:w-full"
             >
               {item.label}
             </Link>

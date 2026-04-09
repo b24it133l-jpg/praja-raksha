@@ -36,13 +36,89 @@ export const modules: ModuleItem[] = [
     href: "/schemes",
     tag: "Support",
   },
+];
+
+export const civicCategories = [
   {
-    title: "AI Assistant",
-    description:
-      "A guided support layer to help users choose modules and frame complaints clearly.",
-    href: "/ai-assistant",
-    tag: "Smart",
+    title: "Roads & Streets",
+    icon: "Road",
+    subtitles: ["Potholes on Roads", "Damaged Roads", "No Footpath", "Waterlogging on Roads", "Dust Roads"]
   },
+  {
+    title: "Water Supply",
+    icon: "Droplets",
+    subtitles: ["No Water Supply", "Low Water Pressure", "Water Leakage", "Contaminated Water", "Irregular Water Supply"]
+  },
+  {
+    title: "Drainage & Sewage",
+    icon: "Activity",
+    subtitles: ["Drainage Overflow", "Blocked Drainage", "Open Sewage Drain", "Bad Smell from Drains", "Water Stagnation"]
+  },
+  {
+    title: "Garbage & Sanitation",
+    icon: "Trash2",
+    subtitles: ["Garbage Not Collected", "Overflowing Dustbins", "Garbage Dumping", "Burning Waste", "Dirty Streets"]
+  },
+  {
+    title: "Street Lights",
+    icon: "Zap",
+    subtitles: ["Street Lights Not Working", "Dark Streets", "Broken Light Poles", "Flickering Lights"]
+  },
+  {
+    title: "Air Pollution",
+    icon: "Wind",
+    subtitles: ["Dust Pollution", "Smoke from Burning Waste", "Construction Pollution", "Industrial Smoke"]
+  },
+  {
+    title: "Noise Pollution",
+    icon: "Volume2",
+    subtitles: ["Loud Music / DJ Noise", "Traffic Noise", "Construction Noise", "Night Disturbance"]
+  },
+  {
+    title: "Traffic & Transport",
+    icon: "TrafficCone",
+    subtitles: ["Traffic Congestion", "No Traffic Signals", "Illegal Parking", "Unsafe Road Crossing"]
+  },
+  {
+    title: "Parks & Public Spaces",
+    icon: "TreePine",
+    subtitles: ["Park Not Maintained", "Broken Equipment", "Unsafe Park Area", "Dirty Public Spaces"]
+  },
+  {
+    title: "Encroachment",
+    icon: "UserMinus",
+    subtitles: ["Illegal Construction", "Road Encroachment", "Land Encroachment", "Unauthorized Shops"]
+  },
+  {
+    title: "Flooding / Rainwater",
+    icon: "CloudRain",
+    subtitles: ["Waterlogging", "Flooded Streets", "Poor Drainage System"]
+  },
+  {
+    title: "Electricity Issues",
+    icon: "Zap",
+    subtitles: ["Power Cuts", "Transformer Issue", "Voltage Fluctuation", "Loose Electric Wires"]
+  },
+  {
+    title: "Public Health",
+    icon: "HeartPulse",
+    subtitles: ["Mosquito Problem", "Stagnant Water", "Unhygienic Area", "Food Safety Issue"]
+  },
+  {
+    title: "Land / Revenue",
+    icon: "Map",
+    subtitles: ["Land Dispute", "Survey Issue", "Property Record Issue"]
+  },
+  {
+    title: "Rural / Panchayat",
+    icon: "Home",
+    subtitles: ["Village Road Problem", "Rural Water Issue", "Sanitation Issue in Village", "Lack of Facilities"]
+  },
+  {
+    title: "Other",
+    icon: "Plus",
+    subtitles: ["Other Civic Issue"]
+  }
 ];
 
 export const stats: DashboardStat[] = [
@@ -96,18 +172,5 @@ export const sampleComplaints: Complaint[] = [
     department: "Electricity Maintenance Wing",
     createdAt: "09 Apr 2026, 08:10 PM",
     updatedAt: "09 Apr 2026, 08:42 PM",
-  },
-  {
-    id: "PRJ-20457",
-    title: "Unsafe harassment-prone area near bus stop",
-    description: "The area feels unsafe in the evenings and needs immediate attention.",
-    category: "Women Safety",
-    location: "Warangal",
-    isAnonymous: true,
-    priority: "Critical",
-    status: "Under Review",
-    department: "Women Protection Cell",
-    createdAt: "09 Apr 2026, 06:25 PM",
-    updatedAt: "09 Apr 2026, 06:33 PM",
   },
 ];

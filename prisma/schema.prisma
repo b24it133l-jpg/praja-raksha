@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Complaint {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String
+  location    String
+  email       String?  // Optional for anonymous, but recommended for updates
+  isAnonymous Boolean  @default(false)
+  priority    String
+  status      String   @default("Submitted")
+  department  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  trackingId  String?  @unique
+
+  @@index([status])
+  @@index([category])
+  @@index([priority])
+  @@index([department])
+  @@index([createdAt])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // In production, use hashed passwords
+  name      String
+  role      String   // "ADMIN" | "DEVELOPER" | "OFFICIAL"
+  createdAt DateTime @default(now())
+}
